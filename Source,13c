@@ -1,0 +1,29 @@
+In   -
+Out  DebugIt
+Type Module
+Ver  1.00d
+
+Define Module
+ Name      DebugIt
+ Author    Justin Fletcher
+ SWIs
+  Prefix   DebugIt
+  Base     &4ba80
+  0        Debug0   debug
+  1        Debug1   debug
+  2        Debug2   debug
+ End SWIs
+End Module
+
+>debug
+   STMFD   (sp)!,{r0-r2,link}            ; Stack registers
+   TEQ     r0,#13
+   BEQ     $exit
+   MOV     r1,r0
+   ADR     r0,$`name
+   MOV     r2,#0
+   SWI     "XSysLog_LogCharacter"
+$exit
+   LDMFD   (sp)!,{r0-r2,pc}^             ; Return from call
+$`name
+   EQUZA   "DebugIt"
