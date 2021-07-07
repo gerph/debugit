@@ -1,7 +1,7 @@
 In   -
 Out  DebugIt
 Type Module
-Ver  1.00d
+Ver  1.01a
 
 Define Module
  Name      DebugIt
@@ -24,6 +24,8 @@ End Module
    MOV     r2,#0
    SWI     "XSysLog_LogCharacter"
 $exit
-   LDMFD   (sp)!,{r0-r2,pc}^             ; Return from call
+   STRVS   r0, [sp]
+   LDMFD   (sp)!,{r0-r2,pc}              ; Return from call
+
 $`name
    EQUZA   "DebugIt"
