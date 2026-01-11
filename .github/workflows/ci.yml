@@ -74,7 +74,7 @@ jobs:
           echo "::set-output name=leafname::$leafname"
         # We extract the version number from the header file that defines it.
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v6
         with:
           name: RISCOS-build
           path: ${{ steps.version.outputs.leafname }}
